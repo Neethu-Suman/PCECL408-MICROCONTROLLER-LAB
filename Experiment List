@@ -1,0 +1,39 @@
+PART A – Data manipulation experiments using Assembly language
+
+1	a.	Familiarization of 8051 Trainer kit. 
+	b.	Data transfer between specified memory locations using 8051 trainer kit 
+	c.	Data Exchange between specified memory locations using 8051 trainer kit 
+
+2	a.	Addition of 8-bit data using 8051 trainer kit
+	b.	Subtraction of 8-bit data using 8051 trainer kit
+	c.	Multiplication of 8-bit data using 8051 trainer kit
+	d.	Division of 8-bit data using 8051 trainer kit
+	e.	Multiplication of 16-bit data using 8051 trainer kit
+
+3	Matrix addition using 8051 trainer kit
+
+4	a.	Largest from a series using 8051 trainer kit
+	b.	Smallest from a series using 8051 trainer kit
+
+5	a.	Sorting (Ascending) of data using 8051 trainer kit
+	b.	Sorting (Descending) of data using 8051 trainer kit
+
+PART B - Interface to Microcontroller Assembly/C language
+
+6	 DAC interface with waveform generation using 8051 trainer kit
+
+7	 ADC interface with waveform generation using 8051 trainer kit
+
+8	Stepper motor interface.
+
+PART C - Interface with Advanced Microcontroller using C language
+
+9 Familiarization of ARM 7 LPC2148 STARTER KIT
+
+10 LED interfacing 
+
+11 PWM generation for DC motor control
+
+12 I2C interface to 7 SEGMENT DISPLAY
+
+13 Object/Visitor Counter.
