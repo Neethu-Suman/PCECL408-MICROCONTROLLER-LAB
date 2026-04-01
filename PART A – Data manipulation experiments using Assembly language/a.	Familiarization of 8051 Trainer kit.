@@ -58,10 +58,10 @@ The EA' (External Access) pin is used to control the internal or external memory
 •	PORT P0 (pins 32 to 39): When the external memory access is required then Port P0 is multiplexed for address bus and data bus that can be used to access external memory in conjunction with port P2. P0 acts as A0-A7 in address bus and D0-D7 for port data. It can be used for general purpose I/O if no external memory presents. 
 •	PORT P2 (pins 21 to 28): Similar to P0, the port P2 can also play a role (A8-A15) in the address bus in conjunction with PORT P0 to access external memory.
 •	PORT P3 (Pins 10 to 17): In addition to acting as a normal I/O port, 
-	P3.0 can be used for serial receive input pin(RXD) • P3.1 can be used for serial transmit output pin(TXD) in a serial port, 
-	P3.2 and P3.3 can be used as external interrupt pins(INT0’ and INT1’),
-	P3.4 and P3.5 are used for external counter input pins(T0 and T1), 
-	P3.6 and P3.7 can be used as external data memory write and read control signal pins(WR’ and RD’)read and write pins for memory access.
+   •	P3.0 can be used for serial receive input pin(RXD) • P3.1 can be used for serial transmit output pin(TXD) in a serial port, 
+   •	P3.2 and P3.3 can be used as external interrupt pins(INT0’ and INT1’),
+   •	P3.4 and P3.5 are used for external counter input pins(T0 and T1), 
+   •	P3.6 and P3.7 can be used as external data memory write and read control signal pins(WR’ and RD’)read and write pins for memory access.
 
 Steps involving in the programming a 8051 Trainer Kit
 
