@@ -1,0 +1,57 @@
+ALGORITHM
+1.	Start
+2.	Initialize DPTR = 4600
+3.	Read the number of data (N) to be transferred from memory location 4600H and store it in R1 register 
+4.	Increment DPTR
+5.	Read the next number and store it in the accumulator
+6.	Increment DPH (46xx to 47xx)
+7.	Store the content of the accumulator to memory location (47xx)
+8.	Decrement DPH (47xx to 46xx)
+9.	Decrement the R1 register and if it is not equal to zero go to step 4 else go to step 10
+10.	Stop
+
+CODE
+Memory location		Opcode	Label	Instruction	Comment
+4100		90		MOV DPTR,#4600H	Initialize DPTR with 4600H 
+4101		46			
+4102		00			
+4103		E0		MOVX A,@DPTR	Store number of data (N)
+4104		F9		MOV R1,A	in R1 register
+4105		A3		INC DPTR	
+4106		E0	LOOP :	MOVX A,@DPTR	Read the number from 46xx
+4107		05		INC DPH	Change DPTR to next (46xx to 47xx)
+4108		83			
+4109		F0		MOVX @DPTR,A	Store the number to 47xx
+410A		05		INC DPL	DPL = 47xx + 1
+410B		82			
+410C		15		DEC DPH	47xx to 46xx
+410D		83			
+410E		D9		DJNZ R1,4106	
+410F		F6			
+4110			HERE	SJMP HERE	
+
+PROCEDURE:
+•	Step 1: Power ON the 8051 Trainer Kit.
+•	Step 2: Enter the program by selecting the A (Address) option and specifying the starting address 4100.
+•	Step 3: Enter the input using SP (Store Program) starting from the addresses 4600.
+•	Step 4: Execute the program using the GO command followed by the program’s starting address.
+•	Step 5: Verify the output using SP (Store Program) starting from the addresses 4701.
+
+EXPECTED OUTPUT:
+Input:
+
+4600 – 05 (number of data to be transferred ‘N’)
+4601 – 01
+4602 – 02
+4603 – 03
+4604 – 04
+4605 – 05
+
+Output:
+
+4701 – 01
+4702 – 02
+4703 – 03
+4704 – 04
+4705 – 05
+
