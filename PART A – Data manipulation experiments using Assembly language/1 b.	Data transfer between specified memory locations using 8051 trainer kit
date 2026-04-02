@@ -1,3 +1,9 @@
+OBJECTIVE:
+
+To write an assembly language program to transfer data between specified memory locations. 
+•	Read the number of data (N) to be transferred from memory location 4600H and store it in R1 register.
+•	Transfer the ‘N’ numbers of data from memory location starting from 4601H to memory location starting from 4701H.
+
 ALGORITHM
 1.	Start
 2.	Initialize DPTR = 4600
