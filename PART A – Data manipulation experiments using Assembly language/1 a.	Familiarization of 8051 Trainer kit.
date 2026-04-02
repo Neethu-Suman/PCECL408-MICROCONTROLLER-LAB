@@ -1,21 +1,18 @@
-EXP NO: 1				
-FAMILIARIZATION OF 8051 TRAINER KIT. 
-OBJECTIVE:
-1.	To familiarize with 8051 trainer kit. 
-2.	To write an assembly language program to transfer data between specified memory locations. 
-•	Read the number of data (N) to be transferred from memory location 4600H and store it in R1 register.
-•	Transfer the ‘N’ numbers of data from memory location starting from 4601H to memory location starting from 4701H.
+EXP NO: 1			FAMILIARIZATION OF 8051 TRAINER KIT. 
 
-3.	To write an assembly language program to exchange data between specified memory locations. 
-•	Read the number of data (N) to be exchanged from memory location 4600H and store it in R1 register 
-•	Transfer the ‘N’ numbers of data from memory location starting from 4601H to memory location starting from 4701H
+OBJECTIVE:
+
+To familiarize with 8051 trainer kit.
 
 LEARNING OUTCOMES:
+
 •	Understand the architecture, features, and operation of the 8051 trainer kit.
 •	Develop the ability to write and execute assembly language programs for data transfer and exchange using 8051 trainer kit.
+
 EQUIPMENTS REQUIRED: 8051 trainer kit. 
+
 THEORY: 
-a.	Familiarization of 8051 Trainer kit.
+
 An 8051 microcontroller comes bundled with the following features.
 •	64K bytes of on-chip program memory (ROM)
 •	128 bytes of on-chip data memory (RAM)
@@ -51,7 +48,7 @@ Interrupts
 Interrupts are defined as requests because they can be refused (masked) if they are not used, that is when an interrupt is acknowledged. A special set of events or routines are followed to handle the interrupts. These special routines are known as interrupt handler or interrupt service routines (ISR). These are located at a special location in memory. INT0 and INT1 are the pins  
 
 Pin Diagram Of 8051 microcontroller
- 
+
 Pin Description
 The EA' (External Access) pin is used to control the internal or external memory access. The signal 0 is for external memory access and signal 1 for internal memory access. The PSEN' (Program Store Enable) is for reading external code memory when it is low (0) and EA is also 0. The ALE (Address Latch Enable) activates the port 0 joined with port 2 to provide 16 bit external address bus to access the external memory. The ALE multiplexes the P0: 1 for latching address on P0 as A0-A7 in the 16 bit address buss, 0 for latching P0 as data I/O.  P0.x is named ADx because P0 is multiplexed for Address bus and Data bus at different clock time. WR' provides the signal to write external data memory RD' provides the signal to read external data and code memory.
 •	PORT P1 (Pins 1 to 8): The port P1 is a port dedicated for general I/O purpose. The other ports P0, P2 and P3 have dual roles in addition to their basic I/O function.
