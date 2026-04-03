@@ -68,6 +68,37 @@ Steps involving in the programming a 8051 Trainer Kit
 •	Step 4: Execute the program using the GO command followed by the program’s starting address.
 •	Step 5: Verify the output using SP (Store Program) at the respective addresses.
 
+MODEL QUESTIONS
+
+1.	Write an 8051 Assembly program to transfer a block of data from one internal RAM location to another.
+2.	Write a program to copy 10 bytes of data from external memory starting at 4500H to internal RAM starting at 30H.
+3.	Write an 8051 program to move a table of 16 bytes from code memory to data memory (MOVC usage).
+4.	Write a program to exchange the contents of two memory locations (e.g., 30H and 31H) in 8051.
+5.	Write an assembly program to transfer data from Port 1 to Port 2 continuously.
+6.	Write an 8051 program to read data from Port 0 and store it in internal RAM starting from 40H.
+7.	Write an 8051 program to transfer a block of data from internal RAM to external RAM using MOVX.
+8.	Write an 8051 program to rotate and transfer data from accumulator to register bank R0–R7.
+9.	Write a program to receive data from Port 3 and send it to Port 1 while displaying status on Port 2.
+10.	Write an 8051 program to implement memory-to-memory block transfer using indirect addressing mode.
+
+VIVA QUESTIONS
+
+1.	What is meant by data transfer in 8051?
+2.	Differentiate between MOV and MOVX instructions.
+3.	What is the difference between internal RAM and external RAM in 8051?
+4.	What is the purpose of DPTR in data transfer?
+5.	Explain direct and indirect addressing modes with examples.
+6.	What is the difference between register-to-register transfer and memory-to-memory transfer?
+7.	Which instruction is used to transfer data from code memory? Explain.
+8.	What is the role of accumulator (A register) in data transfer operations?
+9.	Explain the function of Port 0 in external memory interfacing.
+10.	Why is data exchange important in microcontroller-based systems? Give real-time applications.
+
+INFERENCE
+
+From this experiment, we familiarized with 8051 trainer kit and learned how the 8051 microcontroller transfers and exchanges data between external memory using different instructions.
+
+
 
 
 
