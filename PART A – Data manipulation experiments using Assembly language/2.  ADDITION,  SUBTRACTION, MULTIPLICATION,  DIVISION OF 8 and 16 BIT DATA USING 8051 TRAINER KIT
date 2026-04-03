@@ -1,0 +1,66 @@
+EXP NO: 2				
+
+ADDITION / SUBTRACTION / MULTIPLICATION / DIVISION OF 8/16 BIT DATA USING 8051 TRAINER KIT
+
+LEARNING OUTCOMES:
+
+After completing this experiment, the students will be able to write and execute assembly language program to add, subtract, divide and multiple two 8bit numbers and multiple two 16bit numbers using 8051 trainer kit.
+
+EQUIPMENTS REQUIRED: 
+8051 trainer kit.  
+
+THEORY:
+
+The 8051 microcontroller is an 8-bit processor that supports basic arithmetic operations such as addition, subtraction, multiplication, and division through its instruction set. These operations are commonly performed using the Accumulator (A) and B register, along with general-purpose registers. On the 8051 Trainer Kit, programs are entered and executed to verify these operations practically.
+•	1. Addition of 8-bit / 16-bit Data
+Addition is carried out using the ADD and ADDC instructions.
+•	ADD A, source adds an 8-bit value to the accumulator.
+•	ADDC includes the carry for multi-byte (16-bit) addition.
+For 16-bit addition, the lower byte is added first, and the carry is propagated to the higher byte using ADDC. The result is stored in memory or registers, and the carry flag (CY) indicates overflow.
+•	2. Subtraction of 8-bit / 16-bit Data
+Subtraction is performed using the SUBB (Subtract with Borrow) instruction.
+•	SUBB A, source subtracts the operand and borrow from the accumulator.
+For 16-bit subtraction, the lower byte is subtracted first, followed by the higher byte with borrow using SUBB. The carry flag acts as a borrow indicator.
+•	3. Multiplication of 8-bit / 16-bit Data
+The 8051 provides the MUL AB instruction for multiplication.
+•	It multiplies the contents of A and B registers.
+•	The 16-bit result is stored in A (low byte) and B (high byte).
+For 16-bit multiplication, repeated addition or algorithmic methods are used since the instruction directly supports only 8-bit × 8-bit multiplication.
+•	4. Division of 8-bit / 16-bit Data
+Division is done using the DIV AB instruction.
+•	It divides A by B.
+•	Quotient → A, Remainder → B.
+For 16-bit division, software routines are required as the instruction supports only 8-bit division.
+
+MODEL QUESTIONS
+
+1.	Write and execute an 8051 assembly language program to add two 8-bit numbers and store the result in memory. Display the output on the trainer kit.
+2.	Develop a program to perform 16-bit addition using ADD and ADDC instructions and verify the carry.
+3.	Write an assembly program to subtract two 8-bit numbers using SUBB and store the result and borrow.
+4.	Design and run a program for 16-bit subtraction using the 8051 microcontroller and display the result.
+5.	Write and execute a program to multiply two 8-bit numbers using MUL AB and store the 16-bit result.
+6.	Develop a program to perform division of two 8-bit numbers using DIV AB and display the quotient and remainder.
+7.	Write a program to perform 16-bit multiplication using repeated addition in 8051.
+8.	Implement a program for 16-bit division using software logic in 8051 and verify the result.
+9.	Write and test a program to perform addition and subtraction of given data from memory locations using the 8051 trainer kit.
+10.	Develop an 8051 program to perform all basic arithmetic operations (Add, Sub, Mul, Div) on given data and verify the outputs on the trainer kit.
+
+VIVA QUESTIONS
+
+1.	What is the function of the Accumulator (A) in 8051?
+2.	Which instruction is used for subtraction in 8051?
+3.	What does the carry flag (CY) indicate?
+4.	Which instruction supports 8-bit multiplication?
+5.	Where is the quotient and remainder stored after division?
+6.	Why do we use ADDC in 16-bit addition?
+7.	Which registers are compulsory for MUL and DIV instructions?
+8.	What happens if there is an overflow in addition?
+9.	How is borrow handled in subtraction?
+10.	What is the purpose of using an 8051 Trainer Kit in the lab?
+
+INFERENCE
+
+From this experiment, it is inferred that the 8051 microcontroller efficiently performs arithmetic operations such as addition, subtraction, multiplication, and division on 8-bit and 16-bit data using its built-in instruction set. The Accumulator and B registers play a major role in these operations, while the carry and borrow flags are used to handle multi-byte calculations. By executing the programs on the 8051 Trainer Kit, the results were verified practically, improving understanding of data handling, instruction execution, and flag operations in microcontroller-based systems.
+
+
+
