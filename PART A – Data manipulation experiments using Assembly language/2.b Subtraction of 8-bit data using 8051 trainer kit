@@ -1,0 +1,66 @@
+ALGORITHM
+
+1.	Start
+2.	Initialize DPTR to 4600H
+3.	Read the number from memory location 4600H and store it in R1 register
+4.	Increment DPTR and read the value from next memory location and store it to accumulator
+5.	Subtract the value of R1 register and accumulator and store the result to the accumulator
+6.	If carry flag is set, increment R2 register 
+7.	Increment DPTR and store the value of Accumulator to memory location 4602H
+8.	Increment DPTR and store the value of R2 register to memory location 4603H
+9.	Stop
+
+CODE
+
+Memory location	Opcode	Label	Instruction	Comment
+4100	7A		MOV R2,#00	Initialize R2 Register to 00H
+4101	00			
+4102	90		MOV DPTR,#4700H	Initialize DPTR with 4700H 
+4103	47			
+4104	00			
+4105	E0		MOVX A,@DPTR	Store the first number 
+4106	F9		MOV R1,A	in R1 register
+4107	A3		INC DPTR	Point DPTR to next memory location (4701)
+4108	E0		MOVX A,@DPTR	Store the second no to ACC
+4109	99		SUBB A,R1	A = A - R1
+410A	50		JNC L1(410D)	If carry flag is set, 
+410B	01			increment R2 register
+410C	OA		INC R2	
+410D	A3	L1:	INC DPTR	Store the lower byte of the result
+410E	F0		MOVX @DPTR,A	To memory location 4702H
+410F	EA		MOV A,R2	
+4110	A3		INC DPTR	Store the higher byte of the result  
+4111	F0		MOVX @DPTR,A	to memory location 4703H
+4112	80		SJMP HERE(4112)	
+4113	FE			
+
+
+PROCEDURE
+
+•	Step 1: Power ON the 8051 Trainer Kit.
+•	Step 2: Enter the program by selecting the A (Address) option and specifying the starting address 4100.
+•	Step 3: Enter the input using SP (Store Program) starting from the addresses 4700.
+•	Step 4: Execute the program using the GO command followed by the program’s starting address.
+•	Step 5: Verify the output using SP (Store Program) starting from the addresses 4702.
+
+EXPECTED OUTPUT:
+
+Case1: First number is larger
+
+Input:		
+4700 - 05
+4701 – 02
+
+Output:	
+4702 – 03
+4703 – 00
+
+Case2: Second number is larger (include the screenshot of carry flag)
+
+Input:		
+4700 – 02 
+4701 – 05 
+
+Output:	
+4702 – FD
+4703 – 01
