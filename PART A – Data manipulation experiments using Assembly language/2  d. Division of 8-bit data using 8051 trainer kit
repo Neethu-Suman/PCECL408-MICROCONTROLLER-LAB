@@ -1,0 +1,77 @@
+ALGORITHM
+
+1.	Start
+2.	Initialize DPTR to 4700H
+3.	Read the number from memory location 4700H and store it in B register
+4.	Increment DPTR and read the value from next memory location and store it to accumulator
+5.	Divide the accumulator by B register and store the result to the accumulator and B register
+6.	Increment DPTR and store the quotient to memory location 4702H
+7.	Increment DPTR and store the remainder to memory location 4703H
+8.	Stop
+
+CODE
+
+Memory location	Opcode	Label	Instruction	Comment
+4100	90		MOV DPTR,#4700H	Initialize DPTR with 4700H 
+4101	47			
+4102	00			
+4103	E0		MOVX A,@DPTR	Store the first number 
+4104	F9		MOV B,A	in B register
+4105	F0			
+4106	A3		INC DPTR	Point DPTR to next memory location (4701)
+4107	E0		MOVX A,@DPTR	Store the second no to ACC
+4108	84		DIV AB	A = A / B
+4109	A3		INC DPTR	Store the quotient 
+410A	F0		MOVX @DPTR,A	To memory location 4702H
+410B	E5		MOV A,B	
+410C	F0			
+410D	A3		INC DPTR	Store the remainder  
+410E	F0		MOVX @DPTR,A	to memory location 4703H
+410F	80		SJMP HERE(410F)	
+4110	FE			
+
+PROCEDURE
+
+•	Step 1: Power ON the 8051 Trainer Kit.
+•	Step 2: Enter the program by selecting the A (Address) option and specifying the starting address 4100.
+•	Step 3: Enter the input using SP (Store Program) starting from the addresses 4700.
+•	Step 4: Execute the program using the GO command followed by the program’s starting address.
+•	Step 5: Verify the output using SP (Store Program) starting from the addresses 4702.
+
+EXPECTED OUTPUT:
+
+Case1: Divisor is larger 
+
+Input:		
+4700 - 0A
+4701 – 02
+
+Output:	
+4702 – 00
+4703 – 02
+
+Case2: Dividend is larger and dividend is divisible by divisor
+
+Input:		
+4700 -02
+4701 – 0A
+
+Output:	
+4702 – 05
+4703 – 00
+
+
+Case3: Dividend is larger and dividend is not divisible by divisor
+
+Input:		
+4700 -02
+4701 – 0B
+
+Output:	
+4702 – 05
+4703 – 01
+
+
+
+
+
