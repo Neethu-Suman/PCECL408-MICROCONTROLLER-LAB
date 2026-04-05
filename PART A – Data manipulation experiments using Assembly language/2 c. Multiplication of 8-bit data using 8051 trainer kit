@@ -40,18 +40,24 @@ PROCEDURE
 
 
 EXPECTED OUTPUT:
+
 Case1: Result is also 8-bit number  
 
-Input:		4700 -05
+Input:		
+4700 -05
 4701 – 02
 
-Output:		4702 – 0A
+Output:		
+4702 – 0A
 4703 – 00
+
 Case2: Result is a 16-bit number  
 
-Input:		4700 -FF
+Input:		
+4700 -FF
 4701 – FF
 
-Output:	4702 – 01
+Output:	
+4702 – 01
 4703 – FE
 
