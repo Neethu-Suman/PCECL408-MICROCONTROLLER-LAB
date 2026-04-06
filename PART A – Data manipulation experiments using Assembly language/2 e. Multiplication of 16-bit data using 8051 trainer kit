@@ -1,0 +1,171 @@
+ALGORITHM
+
+1.	Load First 16-bit Number (X)
+  a.	Load DPTR with address 4501H.
+  b.	Read XH from external memory → store in 30H.
+  c.	Increment DPTR.
+  d.	Read XL → store in 31H.
+
+2.	Load Second 16-bit Number (Y)
+  a.	Load DPTR with address 4503H.
+  b.	Read YH → store in 32H.
+  c.	Increment DPTR.
+  d.	Read YL → store in 33H.
+
+3.	Initialize Result Registers
+  a.	Clear R0, R1, R2, and R3 (set to 00H).(Result will be stored as R3:R2:R1:R0)
+
+4.	Multiply Low Bytes (XL × YL)
+  a.	Load XL into A and YL into B.
+  b.	Perform MUL AB.
+  c.	Store lower byte in R0.
+  d.	Store higher byte in R1.
+
+5.	Multiply XL × YH
+  a.	Load XL into A and YH into B.
+  b.	Perform MUL AB.
+  c.	Add result to R1.
+  d.	Add carry and high byte to R2.
+  e.	Propagate carry to R3.
+
+6.	Multiply XH × YL
+  a.	Load XH into A and YL into B.
+  b.	Perform MUL AB.
+  c.	Add result to R1.
+  d.	Add carry and high byte to R2.
+  e.	Propagate carry to R3.
+
+7.	Multiply High Bytes (XH × YH)
+  a.	Load XH into A and YH into B.
+  b.	Perform MUL AB.
+  c.	Add result to R2.
+  d.	Add carry to R3.
+
+8.	Store 32-bit Result in External Memory
+  a.	Load DPTR with address 5701H.
+  b.	Store R3 (MSB) at 5701H.
+  c.	Increment DPTR and store R2 at 5702H.
+  d.	Increment DPTR and store R1 at 5703H.
+  e.	Increment DPTR and store R0 (LSB) at 5704H.
+
+9.	Stop Program Execution
+
+10.	Execute SJMP HERE (infinite loop).
+
+CODE 
+
+Memory Location	Opcode	Label	Instruction	Comment
+4100H	90		MOV DPTR, #4501H	Load 1st number X = (XH,XL)
+4101H	01		—	DPTR Low byte
+4102H	45		—	DPTR High byte
+4103H	E0		MOVX A, @DPTR	Read XH from 4501H
+4104H	F5		MOV 30H, A	XH ← A
+4105H	30		—	Direct addr
+4106H	A3		INC DPTR	Point to XL
+4107H	E0		MOVX A, @DPTR	Read XL
+4108H	F5		MOV 31H, A	XL ← A
+4109H	31		—	Direct addr
+410AH	90		MOV DPTR, #4503H	Load 2nd number Y
+410BH	03		—	DPTR Low byte
+410CH	45		—	DPTR High byte
+410DH	E0		MOVX A, @DPTR	Read YH
+410EH	F5		MOV 32H, A	YH ← A
+410FH	32		—	Direct addr
+4110H	A3		INC DPTR	Point to YL
+4111H	E0		MOVX A, @DPTR	Read YL
+4112H	F5		MOV 33H, A	YL ← A
+4113H	33		—	Direct addr
+4114H	78		MOV R0,#00H	Clear R0
+4115H	00		—	Immediate
+4116H	79		MOV R1,#00H	Clear R1
+4117H	00		—	Immediate
+4118H	7A		MOV R2,#00H	Clear R2
+4119H	00		—	Immediate
+411AH	7B		MOV R3,#00H	Clear R3
+411BH	00		—	Immediate
+411CH	A9		MOV A,31H	XL
+411DH	31		—	Direct
+411EH	A9		MOV B,33H	YL
+411FH	33		—	Direct
+4120H	A4		MUL AB	XL × YL
+4121H	F8		MOV R0,A	LSB
+4122H	—		—	
+4123H	F9		MOV R1,B	MSB
+4124H	A9		MOV A,31H	XL
+4125H	31		—	Direct
+4126H	A9		MOV B,32H	YH
+4127H	32		—	Direct
+4128H	A4		MUL AB	XL × YH
+4129H	29		ADD A,R1	Add
+412AH	F9		MOV R1,A	Store
+412BH	98		MOV A,B	Carry
+412CH	3A		ADDC A,R2	Add carry
+412DH	FA		MOV R2,A	Store
+412EH	74		MOV A,#00H	Clear
+412FH	00		—	Immediate
+4130H	3B		ADDC A,R3	Carry
+4131H	FB		MOV R3,A	Store
+4132H	A9		MOV A,30H	XH
+4133H	30		—	Direct
+4134H	A9		MOV B,33H	YL
+4135H	33		—	Direct
+4136H	A4		MUL AB	XH × YL
+4137H	29		ADD A,R1	Add
+4138H	F9		MOV R1,A	Store
+4139H	98		MOV A,B	Carry
+413AH	3A		ADDC A,R2	Add
+413BH	FA		MOV R2,A	Store
+413CH	74		MOV A,#00H	Clear
+413DH	00		—	Immediate
+413EH	3B		ADDC A,R3	Carry
+413FH	FB		MOV R3,A	Store
+4140H	A9		MOV A,30H	XH
+4141H	30		—	Direct
+4142H	A9		MOV B,32H	YH
+4143H	32		—	Direct
+4144H	A4		MUL AB	XH × YH
+4145H	2A		ADD A,R2	Add
+4146H	FA		MOV R2,A	Store
+4147H	98		MOV A,B	Carry
+4148H	3B		ADDC A,R3	Add
+4149H	FB		MOV R3,A	Final result
+414AH	90		MOV DPTR,#5701H	Load result address
+414BH	01	—	DPTR Low byte	
+414CH	57	—	DPTR High byte	
+414DH	EB		MOV A,R3	MSB
+414EH	F0		MOVX @DPTR,A	Store R3 at 5701H
+414FH	A3		INC DPTR	Point to 5702H
+4150H	EA		MOV A,R2	
+4151H	F0		MOVX @DPTR,A	Store R2
+4152H	A3		INC DPTR	Point to 5703H
+4153H	E9		MOV A,R1	
+4154H	F0		MOVX @DPTR,A	Store R1
+4155H	A3		INC DPTR	Point to 5704H
+4156H	E9		MOV A,R0	
+4157H	F0		MOVX @DPTR,A	Store R0
+4158H	80FE		SJMP $	Infinite loop
+
+PROCEDURE
+•	Step 1: Power ON the 8051 Trainer Kit.
+•	Step 2: Enter the program by selecting the A (Address) option and specifying the starting address 4100.
+•	Step 3: Enter the input using SP (Store Program) starting from the addresses 4501.
+•	Step 4: Execute the program using the GO command followed by the program’s starting address.
+•	Step 5: Verify the output using SP (Store Program) starting from the addresses 5701.
+
+EXPECTED OUTPUT:
+Input:	
+
+4501H		12H	(XH)
+4502H		34H	(XL)
+4503H		00H	(YH)
+4504H		56H	(YL)
+
+Output:
+
+5701H		00H	(R3, MSB)
+5702H		06H	(R2)
+5703H		1DH	(R1)
+5704H		78H	(R0, LSB)
+
+
+
