@@ -105,3 +105,32 @@ INPUT:						OUTPUT:
 4203		FF	  4303		FF	          4403	FE	    4502		01	
 4204		FF	  4304		FF	          4404	FE	    4502		01			
 
+MODEL QUESTIONS:
+
+1.	Write an assembly language program to perform addition of two matrices using 8051 trainer kit.
+2.	Draw the flowchart for matrix addition using 8051 microcontroller.
+3.	Develop an algorithm to add two N×MN \times MN×M matrices using 8051.
+4.	Explain how looping is implemented for matrix addition in 8051.
+5.	Write a program to add two 2×2 matrices stored in external memory using 8051.
+6.	Explain the role of registers in matrix addition operation.
+7.	Write a program for addition of matrices using indirect addressing mode.
+8.	Explain how carry is handled in matrix element addition.
+9.	Describe the memory organization for storing matrices in 8051 trainer kit.
+10.	Explain the instruction set used for matrix addition in 8051.
+
+VIVA QUESTIONS:
+
+1.	What is a matrix?
+2.	What condition must be satisfied to add two matrices?
+3.	How are matrix elements stored in 8051 memory?
+4.	Which instruction is used to add two numbers in 8051?
+5.	What is the role of the accumulator in matrix addition?
+6.	How do you access external memory in 8051?
+7.	What is the function of DPTR in matrix programs?
+8.	What instruction is used for looping in 8051?
+9.	What is the use of indirect addressing in matrix operations?
+10.	What happens if the matrix dimensions are unequal?
+
+INFERENCE
+
+A program add elements of two matrix was executed and outputs were verified
