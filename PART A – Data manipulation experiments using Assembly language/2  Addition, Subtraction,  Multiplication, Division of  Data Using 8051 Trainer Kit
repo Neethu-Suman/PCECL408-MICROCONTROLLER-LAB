@@ -11,7 +11,8 @@ EQUIPMENTS REQUIRED:
 
 THEORY:
 
-The 8051 microcontroller is an 8-bit processor that supports basic arithmetic operations such as addition, subtraction, multiplication, and division through its instruction set. These operations are commonly performed using the Accumulator (A) and B register, along with general-purpose registers. On the 8051 Trainer Kit, programs are entered and executed to verify these operations practically.
+The 8051 microcontroller is an 8-bit processor that supports basic arithmetic operations such as addition, subtraction, multiplication, and division through its instruction set. These operations are 
+commonly performed using the Accumulator (A) and B register, along with general-purpose registers. On the 8051 Trainer Kit, programs are entered and executed to verify these operations practically.
 •	1. Addition of 8-bit / 16-bit Data
 Addition is carried out using the ADD and ADDC instructions.
 •	ADD A, source adds an 8-bit value to the accumulator.
@@ -60,7 +61,9 @@ VIVA QUESTIONS
 
 INFERENCE
 
-From this experiment, it is inferred that the 8051 microcontroller efficiently performs arithmetic operations such as addition, subtraction, multiplication, and division on 8-bit and 16-bit data using its built-in instruction set. The Accumulator and B registers play a major role in these operations, while the carry and borrow flags are used to handle multi-byte calculations. By executing the programs on the 8051 Trainer Kit, the results were verified practically, improving understanding of data handling, instruction execution, and flag operations in microcontroller-based systems.
+From this experiment, it is inferred that the 8051 microcontroller efficiently performs arithmetic operations such as addition, subtraction, multiplication, and division on 8-bit and 16-bit data using its 
+built-in instruction set. The Accumulator and B registers play a major role in these operations, while the carry and borrow flags are used to handle multi-byte calculations. By executing the programs on the 
+8051 Trainer Kit, the results were verified practically, improving understanding of data handling, instruction execution, and flag operations in microcontroller-based systems.
 
 
 
