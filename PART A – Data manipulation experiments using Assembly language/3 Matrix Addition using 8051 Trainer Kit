@@ -1,0 +1,107 @@
+EXP NO: 3				
+Matrix Addition using 8051 Trainer Kit
+
+OBJECTIVE:
+
+To add element of two matrix 
+  •	Add two matrices stored in memory locations 4201H and 4301H onwards
+  •	Store the result in memory locations 4401H and 4501H
+
+LEARNING OUTCOMES:
+
+After completing this experiment, the students will be able to write and execute assembly language program to add element of two matrix using 8051 trainer kit.
+
+EQUIPMENTS REQUIRED: 
+
+8051 trainer kit.      
+
+THEORY:
+
+Matrix addition involves adding corresponding elements of two matrices of the same order to obtain a resultant matrix. In the 8051 microcontroller, when matrices are stored in external memory, the data is 
+accessed using the MOVX instruction along with the DPTR (Data Pointer) register.
+The two input matrices are placed in consecutive locations of the external RAM. The DPTR is used to point to the memory address of each matrix element. The Accumulator (A) fetches the element from the first 
+matrix using MOVX A,@DPTR, and the corresponding element from the second matrix is added using the ADD instruction. The result is then stored back into another external memory location using MOVX @DPTR,A. 
+A loop counter controls the number of elements to be processed. 
+
+ALGORITHM
+
+1.	Start
+2.	Initialize DPTR to 4200H 
+3.	Read the number of elements (N) from memory location 4200H and store it to R1 register
+4.	Increment DPTR
+5.	Copy the value of the next memory location [42xx] to B register
+6.	Initialize DPH to 43H
+7.	Copy the value of the memory location [43xx] to accumulator
+8.	Add the value in A and B and store the result in accumulator
+9.	Initialize DPH to 44H
+10.	Store the lower byte of the result to the memory location starting from 44xxH
+11.	Initialize R2 to 00
+12.	If carry flag is set, increment R2 register 
+13.	Initialize DPH to 45H
+14.	Store the higher byte of the result to the memory location starting from 45xxH
+15.	Initialize DPH to 42H
+16.	Decrement the R1 register and if it is not equal to zero go to step 4 else go to step 17
+17.	Stop
+
+CODE  
+
+Memory location	Opcode	Label	Instruction	Comment
+4100	90		MOV DPTR, #4200H	Initialize DPTR with 4200H 
+4101	42			
+4102	00			
+4103	E0		MOVX A, @DPTR	Store number of data (N)
+4104	F9		MOV R1, A	in R1 register
+4105	A3	G	INC DPTR	
+4106	E0		MOVX A, @DPTR	read the first matrix element and 
+4107	F5		MOV B, A	copy to B
+4108	F0			
+4109	05		INC DPH	read the second matrix element 
+410A	83			
+410B	E0		MOVX A, @DPTR	and copy to A
+410C	25		ADD A, B	A = A + B
+410D	F0			
+410E	05		INC DPH	Store the lower byte of the result 
+410F	83			in 44xx
+4110	F0		MOVX @DPTR, A	
+4111	78		MOV R0, # 00	
+4112	00			
+4113	50		JNC L2 (4116)	
+4114	01			
+4115	08		INC R0	
+4116	05	L2:	INC DPH	Store the result to 45XX
+4117	83			
+4118	E8		MOV A, R0	
+4119	F0		MOVX @DPTR, A	
+411A	75		MOV DPH, #42H	
+411B	83			
+411C	42			
+411D	D9		DJNZ R1, G(4105)	dec R1 and continue the process if 
+411E	E6			not zero
+411F	80	HERE	SJMP HERE (411F)	
+	FE			
+
+PROCEDURE
+
+•	Step 1: Power ON the 8051 Trainer Kit.
+•	Step 2: Enter the program by selecting the A (Address) option and specifying the starting address 4100.
+•	Step 3: Enter the input using SP (Store Program) starting from the addresses 4200.
+•	Step 4: Execute the program using the GO command followed by the program’s starting address.
+•	Step 5: Verify the output using SP (Store Program) starting from the addresses 4401.
+
+EXPECTED OUTPUT:
+
+INPUT:						              OUTPUT:
+4200		04						
+4201		01	  4301		05	          4401	06	    4501		00	
+4202		02	  4302		06	          4402	08 	    4502		00	
+4203		03	  4303		07	          4403	0A	    4502		00	
+4204		04	  4304		08	          4404	0C	    4502		00	
+
+INPUT:						OUTPUT:
+
+4200		04						
+4201		FF	  4301		FF	          4401	FE	    4501		01	
+4202		FF	  4302		FF	          4402	FE	    4502		01	
+4203		FF	  4303		FF	          4403	FE	    4502		01	
+4204		FF	  4304		FF	          4404	FE	    4502		01			
+
