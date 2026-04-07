@@ -1,0 +1,77 @@
+OBJECTIVE:
+
+4.a To find the largest from a series
+
+•	Read the count of the series (N) from memory location 4600H and store it in R1 register. 
+•	Find the largest among the ‘N’ series of numbers starting from memory location 4601H and store the result in register R2.
+
+
+ALGORITHM
+
+1.	Start
+2.	Initialize DPTR = 4600
+3.	Read the number of data (N) to be transferred from memory location 4600H and store it in R1 register 
+4.	Decrement R1 register
+5.	Increment DPTR
+6.	Read the first number and store it in the R2 register
+7.	Increment DPTR
+8.	Read the next number and store it in the accumulator and R3 register
+9.	Compare the numbers by subtracting R2 from the accumulator and store the result in the accumulator 
+10.	If the carry flag is set, move the content of R3 to the R2 register
+11.	Decrement the R1 register and if it is not equal to zero go to step 5 else go to step 12
+12.	Initialize DPTR = 4700
+13.	Store the largest number in R3 register to the memory location 4700
+14.	Stop
+
+CODE
+
+Memory location	Opcode	Label	Instruction	Comment
+4100	90		MOV DPTR,#4600H	Initialize DPTR with 4600H 
+4101	46			
+4102	00			
+4103	E0		MOVX A,@DPTR	Store number of data (N)
+4104	F9		MOV R1,A	in R1 register
+4105	19		DEC R1	
+4106	A3		INC DPTR	
+4107	E0		MOVX A,@DPTR	Read the number from 46xx
+4108	FA		MOV R2,A	
+4109	A3		INC DPTR	
+410A	E0	LOOP :	MOVX A,@DPTR	Read the number from 46xx
+410B	FB		MOV R3,A	
+410C	9A		SUBB A,R2	
+410D	40		JNC L1 (4111)	
+410E	02			
+410F	EB		MOV A,R3	
+4110	FA		MOV R2,A	
+4111	D9	L1:	DJNZ R1,LOOP(410A)	
+4112	F7			
+4113	90		MOV DPTR,#4700H	Initialize DPTR with 4700H 
+4114	46			
+4115	00			
+4116	EA		MOV A,R2	Store largest number (N)
+4117	F0		MOVX @DPTR,A	in 4700
+4118	80	HERE:	SJMP HERE	
+
+	
+PROCEDURE
+
+•	Step 1: Power ON the 8051 Trainer Kit.
+•	Step 2: Enter the program by selecting the A (Address) option and specifying the starting address 4100.
+•	Step 3: Enter the input using SP (Store Program) starting from the addresses 4600.
+•	Step 4: Execute the program using the GO command followed by the program’s starting address.
+•	Step 5: Verify the output using SP (Store Program) starting from the addresses 4700.
+
+
+EXPECTED OUTPUT:
+
+Input:
+
+4600 - 05
+4601 – 02
+4602 – 04
+4603 – FF
+4604 – 55
+4605 – 90
+
+Output: 4700  – FF
+
