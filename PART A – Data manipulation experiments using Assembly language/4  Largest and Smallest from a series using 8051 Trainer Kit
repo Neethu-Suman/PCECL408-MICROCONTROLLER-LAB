@@ -1,0 +1,20 @@
+EXP NO: 4				
+LARGEST/SMALLEST FROM A SERIES USING 8051 TRAINER KIT
+
+OBJECTIVE:
+4.a To find the largest from a series
+
+•	Read the count of the series (N) from memory location 4600H and store it in R1 register. 
+•	Find the largest among the ‘N’ series of numbers starting from memory location 4601H and store the result in register R2.
+
+4.b To find the smallest from a series
+
+•	Read the count of the series (N) from memory location 4600H and store it in R1 register. 
+•	Find the smallest among the ‘N’ series of number starting from memory location 4601H and store the result in register R2.
+
+LEARNING OUTCOMES:
+After completing this experiment, the students will be able to write and execute assembly language program to find the largest/smallest from a series using 8051 trainer kit.
+EQUIPMENTS REQUIRED: 8051 trainer kit.          
+THEORY:
+To find the largest or smallest number from a given series, the data values are stored in memory locations and accessed sequentially using the 8051 microcontroller. The Accumulator (A) loads each element using a pointer register (R0/R1). Initially, the first element is assumed as the largest or smallest. The remaining elements are compared using the CJNE instruction, and based on the carry flag, the stored value is updated. A loop counter controls the number of comparisons. Finally, the result is stored in memory and verified on the 8051 Trainer Kit.
+This experiment demonstrates comparison, looping, and memory addressing in the 8051.
