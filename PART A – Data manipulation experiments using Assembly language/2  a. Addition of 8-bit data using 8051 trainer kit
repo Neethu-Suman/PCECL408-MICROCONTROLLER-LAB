@@ -1,3 +1,9 @@
+OBJECTIVE:
+
+2.a	To add two 8-bit numbers
+  •	Add two 8-bit numbers stored in memory locations 4700H and 4701H 
+  •	Store the result in memory locations 4702H and 4703H
+
 ALGORITHM
 
 1.	Start
