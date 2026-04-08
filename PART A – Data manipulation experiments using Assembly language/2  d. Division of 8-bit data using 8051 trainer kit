@@ -1,3 +1,8 @@
+2.d	To divide two 8-bit numbers
+
+•	Divide two 8-bit numbers stored in memory locations 4700H (divisor) and 4701H (dividend)
+•	Store the result in memory locations 4702H (Reminder) and 4703H (Quotient) 
+
 ALGORITHM
 
 1.	Start
