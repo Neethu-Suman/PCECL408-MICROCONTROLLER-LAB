@@ -1,20 +1,51 @@
 EXP NO: 4				
 LARGEST/SMALLEST FROM A SERIES USING 8051 TRAINER KIT
 
-OBJECTIVE:
-4.a To find the largest from a series
-
-•	Read the count of the series (N) from memory location 4600H and store it in R1 register. 
-•	Find the largest among the ‘N’ series of numbers starting from memory location 4601H and store the result in register R2.
-
-4.b To find the smallest from a series
-
-•	Read the count of the series (N) from memory location 4600H and store it in R1 register. 
-•	Find the smallest among the ‘N’ series of number starting from memory location 4601H and store the result in register R2.
-
 LEARNING OUTCOMES:
 After completing this experiment, the students will be able to write and execute assembly language program to find the largest/smallest from a series using 8051 trainer kit.
-EQUIPMENTS REQUIRED: 8051 trainer kit.          
+
+EQUIPMENTS REQUIRED: 
+
+8051 trainer kit.          
+
 THEORY:
-To find the largest or smallest number from a given series, the data values are stored in memory locations and accessed sequentially using the 8051 microcontroller. The Accumulator (A) loads each element using a pointer register (R0/R1). Initially, the first element is assumed as the largest or smallest. The remaining elements are compared using the CJNE instruction, and based on the carry flag, the stored value is updated. A loop counter controls the number of comparisons. Finally, the result is stored in memory and verified on the 8051 Trainer Kit.
+
+To find the largest or smallest number from a given series, the data values are stored in memory locations and accessed sequentially using the 8051 microcontroller. The Accumulator (A) loads each element using 
+a pointer register (R0/R1). Initially, the first element is assumed as the largest or smallest. The remaining elements are compared using the CJNE instruction, and based on the carry flag, the stored value is 
+updated. A loop counter controls the number of comparisons. Finally, the result is stored in memory and verified on the 8051 Trainer Kit.
 This experiment demonstrates comparison, looping, and memory addressing in the 8051.
+
+MODEL QUESTIONS:
+
+1.	Write an 8051 assembly language program to find the largest number from a series of N 8-bit numbers stored in memory.
+2.	Write an 8051 program to find the smallest number from a series of N numbers stored in internal RAM.
+3.	Explain the algorithm to find the largest number from a given series using the 8051 microcontrollers.
+4.	Explain the difference between finding largest and smallest numbers in 8051 assembly language.
+5.	Draw and explain the flowchart to find the smallest number from a series of 8-bit numbers.
+6.	Write a program to find the largest number from numbers stored in external memory using MOVX instruction.
+7.	Modify the program to store the largest number at a specified memory location after comparison.
+8.	Write an 8051 program to find both largest and smallest numbers in a single execution.
+9.	Explain how the Carry flag is used while comparing two numbers in 8051.
+10.	Write an 8051 assembly program to find the largest number in a series using register indirect addressing.
+
+VIVA QUESTIONS:
+
+1.	Which instruction is used to compare two numbers in 8051?
+2.	What is the function of the CJNE instruction?
+3.	How does the Carry flag behave after subtraction in 8051?
+4.	What is the difference between SUBB and CJNE?
+5.	Why is a loop required while finding the largest number?
+6.	What addressing modes are commonly used in this program?
+7.	How many registers are required to find the largest number?
+8.	What happens if all numbers in the series are equal?
+9.	Can this program work for 16-bit numbers? How?
+10.	What is the role of DJNZ instruction in this experiment?
+
+
+INFERENCE
+
+From this experiment, it is inferred that the 8051 microcontroller can successfully find the largest and smallest values from a given series stored in external memory. By accessing data through the DPTR and 
+MOVX instructions, the program compares each element and updates the result using conditional branching. The execution on the 8051 Trainer Kit verified the correct output, demonstrating the use of external 
+memory interfacing, looping, and comparison operations in practical microcontroller applications.
+
+
