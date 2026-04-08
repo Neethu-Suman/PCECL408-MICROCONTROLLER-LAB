@@ -1,3 +1,7 @@
+4.b To find the smallest from a series
+
+•	Read the count of the series (N) from memory location 4600H and store it in R1 register. 
+•	Find the smallest among the ‘N’ series of number starting from memory location 4601H and store the result in register R2.
 
 
 ALGORITHM
