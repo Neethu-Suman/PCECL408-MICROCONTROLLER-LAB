@@ -1,3 +1,8 @@
+2.e	To multiple two 16-bit numbers
+
+•	Multiple two 16-bit numbers with the first number stored in memory locations 4600H and 4601H and the second number in memory locations 4602H and 4603H
+•	Store the result in memory locations 4604H, 4605H and 4606H
+
 ALGORITHM
 
 1.	Load First 16-bit Number (X)
