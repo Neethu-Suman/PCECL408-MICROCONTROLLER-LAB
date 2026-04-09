@@ -1,0 +1,6 @@
+
+OBJECTIVE:
+
+5.b To sort N numbers in Descending Order
+•	Read the count of the array (N) from memory location 4600H and store it in register R1.
+•	Sort the ‘N’ numbers starting from memory location 4601H in descending order using 8051 assembly language and store the sorted result in the same memory locations (or specified result locations).
