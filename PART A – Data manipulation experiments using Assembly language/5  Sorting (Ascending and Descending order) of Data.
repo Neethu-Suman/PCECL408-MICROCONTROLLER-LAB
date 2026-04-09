@@ -2,14 +2,6 @@ EXP NO: 5
 
 Sorting (Ascending and Descending order) of Data.
 
-OBJECTIVE:
-5.a To sort N numbers in Ascending Order
-•	Read the count of the array (N) from memory location 4200H and store it in register R1.
-•	Sort the ‘N’ numbers starting from memory location 4601H in ascending order using 8051 assembly language and store the sorted result in the same memory locations (or specified result locations).
-5.b To sort N numbers in Descending Order
-•	Read the count of the array (N) from memory location 4600H and store it in register R1.
-•	Sort the ‘N’ numbers starting from memory location 4601H in descending order using 8051 assembly language and store the sorted result in the same memory locations (or specified result locations).
-
 LEARNING OUTCOMES:
 
 •	After completing this experiment, the students will be able to write and execute assembly language program to sort the n numbers in ascending/descending order using 8051 trainer kit.
