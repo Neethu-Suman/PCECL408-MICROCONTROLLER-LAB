@@ -13,3 +13,32 @@ Sorting is the process of arranging data elements in a particular order to make 
 sorting, the data is arranged from the smallest value to the largest value, such as 12, 23, 45, and 89. In descending order sorting, the data is arranged from the largest value to the smallest value, such as 89, 
 45, 23, and 12. Sorting plays an important role in computer programming and data management because it improves data organization, makes searching faster (for example, in binary search), and enhances the efficiency 
 of various algorithms. 
+
+MODEL QUESTIONS:
+1. Write an 8051 assembly language program to sort a given series of 8-bit numbers in ascending order.
+2. Write an 8051 program to sort a set of numbers in descending order using bubble sort technique.
+3. Explain the algorithm for sorting data in ascending order using the 8051 microcontroller.
+4. Draw and explain the flowchart for sorting numbers in descending order.
+5. Explain how the Carry flag is used during comparison in sorting.
+6. Write an 8051 program to sort numbers stored in external memory using MOVX instruction.
+7. Modify the sorting program to store the sorted output at a different memory location.
+8. Compare ascending and descending sorting programs in 8051 with necessary changes in instructions.
+9. Write a program to sort 10 numbers using register indirect addressing.
+10. Explain the role of nested loops in implementing sorting using 8051.
+
+ VIVA QUESTIONS:
+1. What is sorting?
+2. What is the difference between ascending and descending order?
+3. Which instruction is used for comparison in 8051?
+4. What is the function of the DJNZ instruction?
+5. Why are two loops required in bubble sort?
+6. How does the Carry flag behave after subtraction?
+7. What addressing modes are used in sorting programs?
+8. How can you modify the program to perform descending order sorting?
+9. What is the role of DPTR in sorting external memory data?
+10. What will happen if all numbers are already sorted?
+
+INFERENCE:
+Program to sort a set of numbers in ascending order was successfully executed and output was also obtained.
+
+
