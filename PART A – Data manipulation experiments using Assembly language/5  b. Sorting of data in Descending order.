@@ -4,3 +4,74 @@ OBJECTIVE:
 5.b To sort N numbers in Descending Order
 •	Read the count of the array (N) from memory location 4600H and store it in register R1.
 •	Sort the ‘N’ numbers starting from memory location 4601H in descending order using 8051 assembly language and store the sorted result in the same memory locations (or specified result locations).
+
+ALGORITHM
+13.	Load values of total number to A
+14.	Decrement it and move it to R2 and R3
+15.	MOV R0 TO A
+16.	Move Values in Acc TO R1
+17.	Point DPTR TO 4400
+18.	Move values in DPTR to A
+19.	Move R3 and increment DPTR
+20.	Move value in DPTR to A and subtract R3 from A. If carry, jumb to step 10
+21.	MOV DPTR to A of exchange value in register by decrementing DPTR and 
+22.	Decrement R0 and jump if non zero to step 6
+23.	Decrement R1, jump if non zero to step 6
+24.	Stop 
+
+CODE
+
+Memory Location	Opcode	Label	Instruction	Comment
+4100H	90		MOV DPTR, #4200H	Load DPTR with 4200H
+4101H	00	—	DPTR Low byte	
+4102H	42	—	DPTR High byte	
+4103H	E0		MOVX A,@DPTR	Move content of 4200H to A
+4104H	14		DEC A	Decrement count
+4105H	F8		MOV R0,A	Move A to R0
+4106H	F9		MOV R1,A	Move A to R1
+4107H	E8	L3	MOV A,R0	Move R0 to A
+4108H	FA		MOV R2,A	Move A to R2
+4109H	90		MOV DPTR,#4400H	Load DPTR with 4400H
+410AH	00	—	DPTR Low byte	
+410BH	44	—	DPTR High byte	
+410CH	E0	L2	MOVX A,@DPTR	Move data to A
+410DH	FB		MOV R3,A	Store first number in R3
+410EH	A3		INC DPTR	Point to next data
+410FH	E0		MOVX A,@DPTR	Move next data to A
+4110H	9B		SUBB A,R3	Compare two numbers
+4111H	40		JC L1	Jump if no carry (Ascending)
+4112H	E0		MOVX A,@DPTR	Move larger value
+4113H	FC		MOV R4,A	Store in R4
+4114H	EB		MOV A,R3	Move smaller value
+4115H	F0		MOVX @DPTR,A	Store at memory
+4116H	A3		INC DPTR	Increment DPTR
+4117H	DA	L1	DJNZ R2,L2	Inner loop
+4118H	D9		DJNZ R1,L3	Outer loop
+4119H	80		SJMP HLT	Stop program
+
+PROCEDURE
+
+•	Step 1: Power ON the 8051 Trainer Kit.
+•	Step 2: Enter the program by selecting the A (Address) option and specifying the starting address 4100.
+•	Step 3: Enter the input using SP (Store Program) starting from the addresses 4200.
+•	Step 4: Execute the program using the GO command followed by the program’s starting address.
+•	Step 5: Verify the output using SP (Store Program) starting from the addresses 4201.
+
+EXPECTED OUTPUT:
+ 
+Input: 
+
+    4200		05
+		4201 		01
+		4202		02
+		4203		03
+		4204		04
+		4205		05
+
+Output: 	
+    4201 		05
+		4202		04
+		4203		03
+		4204		02
+		4205		01
+
