@@ -1,1 +1,57 @@
 
+AIM
+
+To write programs to interface stepper motor to microcontroller.
+
+ALGORITHM
+
+Step1: Start.
+Step2: Enter the first values of rotation sequence to desired memory location.
+Step3: Set the count value as 4.
+Step4: Copy the value of rotation sequence to A.
+ Step5: Call delay
+ Step6: Copy control word FFC0 TO DPTR
+Step7: Copy the value of rotation sequence to FFC0.
+Step8: Decrement the count go to step if count is non zero.
+Step 9: Stop
+
+PROGRAM
+
+Memory	Label		Mneumonics		Comments
+4100	L	MOV DPTR,#4500H	Initializes DPTR with 4500H
+4103   		MOV R0,#04	Initializes accumulator with 04H
+4105	L2   	MOVX A,@DPTR	Copy address contained in DPTR to [acc]
+4106		PUSH DPH	Copy the content of DPTR to stack
+4108		PUSH DPL	
+410A   		MOV DPTR ,#FFC0H	Initializes DPTR with FFC0H
+410D		MOV R2,#04H	Initializes R2 with 04H
+410F		MOV R1,#FFH	Initializes R1 with FFH
+4111	L1	MOV R3,#FFH	Initializes R3 with FFH
+4113		DJNZ R3,HERE	Decrement R3, jump to HERE if R3 ≠ 0
+4115		DJNZ R1,L1	Decrement R1, jump to L1 if R1 ≠ 0
+4117		DJNZ R2,L1	Decrement R2, jump to L1 if R1 ≠ 0
+4119		MOVX @DPTR,A	Copy [acc] to address contained in DPTR
+411A		POP DPL	Copy the content of DPTR to stack
+411C		POP DPH	
+411E		INC DPTR
+	Increment DPTR
+411F		DJNZ R0,L2	Decrement R0, jump to L2 if R0 ≠ 0
+4121		SJMP L	Jump to L
+4123		RET	Return
+                                                                                                                                                                                                        
+OBSERSATION
+
+INPUT        
+
+      ANTICLOCKWISE	    CLOCKWISE
+
+4500	09	                0A
+4501	05	                06
+4502	06	                05
+4503	0A	                09
+								
+						
+INFERENCE
+
+A program to interface stepper motor to microcontroller was executed and outputs were verified
+
