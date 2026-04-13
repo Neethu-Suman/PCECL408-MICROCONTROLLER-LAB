@@ -1,1 +1,14 @@
+OBJECTIVE:
 
+•	To interface a Digital-to-Analog Converter (DAC 0808) with the 8051 microcontroller.
+
+LEARNING OUTCOMES:
+
+•	Understand the principle of digital-to-analog conversion using the R-2R ladder network.
+•	Learn how to generate periodic waveforms by manipulating digital values in software.
+
+EQUIPMENTS REQUIRED:
+
+•	8051 Trainer Kit.
+•	DAC 0808 IC and OP-AMP (e.g., uA741) for current-to-voltage conversion.
+•	Cathode Ray Oscilloscope (CRO) or Digital Storage Oscilloscope (DSO).
