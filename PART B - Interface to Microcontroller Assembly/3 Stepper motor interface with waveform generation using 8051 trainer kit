@@ -1,7 +1,14 @@
+EXP NO 3 
 
-AIM
+Stepper motor interface with waveform generation using 8051 trainer kit
+
+OBJECTIVE
 
 To write programs to interface stepper motor to microcontroller.
+
+LEARNING OUTCOMES
+•	Understand the working principle of stepper motors and the concept of step angles.
+•	Program the microcontroller to toggle between clockwise and anti-clockwise rotation.
 
 ALGORITHM
 
