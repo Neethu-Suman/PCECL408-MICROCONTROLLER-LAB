@@ -1,1 +1,99 @@
+OBJECTIVE:
 
+•	To interface an Analog-to-Digital Converter (ADC 0808/0809) with the 8051 microcontroller.
+
+LEARNING OUTCOMES:
+
+•	Understand the signaling protocol for ADC chips (ALE, START, EOC, and OE).
+•	Learn how to select specific analog channels using address lines (ADD A, B, C).
+•	Develop an assembly language program to automate the data acquisition process.
+
+EQUIPMENTS REQUIRED: 
+
+8051 trainer kit, ADC 0808/0809 IC, Potentiometer (for analog input).
+
+THEORY:
+
+The ADC 0808 is an 8-bit CMOS device with an 8-channel multiplexer. It uses a successive approximation register (SAR) for conversion. Since the 8051 is a digital device, it requires an ADC to process real-world 
+signals like temperature or voltage.
+
+Key control signals used in this code:
+
+•	ALE (Address Latch Enable): Latches the address of the selected channel.
+•	START: Begins the conversion process.
+•	EOC (End of Conversion): ADC signals the MCU that the data is ready.
+•	OE (Output Enable): Enables the output buffers to read the converted digital data.
+
+ALGORITHM
+  1.	INITIALIZE PORTS:
+      o	 Configure Port 1 as an input port to receive digital data from the ADC.
+      o	Clear the ALE (Address Latch Enable) and START pins.
+      o	Set EOC (End of Conversion) high as an initial state.
+  2.	CHANNEL SELECTION: Select the desired analog input channel by providing the address to pins ADD
+      A, B, and C. (In this code, Channel 2 is selected by setting B=1, A=0, C=0).
+  3.	LATCH ADDRESS: * Set ALE high.
+      o	Apply a short delay.
+      o	Set START high to initiate the conversion.
+  4.	START CONVERSION: * Apply a short delay.
+      o	Clear ALE and START pins to complete the start pulse.
+  5.	WAIT FOR EOC: * Monitor the EOC pin.
+      o	Wait until EOC goes low (signaling conversion has started).
+      o	Wait until EOC goes high again (signaling conversion is complete).
+  6.	READ DATA:
+      o	Set OE (Output Enable) high to enable the ADC’s output buffers.
+      o	Apply a short delay.
+      o	Read the 8-bit digital data from Port 1 into the Accumulator.
+  7.	DISPLAY DATA: Move the data from the Accumulator to Port 3 for visual output.
+  8.	LOOP: Jump back to the BACK label to repeat the process for continuous monitoring.
+  9.	END: End of program.
+
+CODE:
+
+ORG 0000H						; Starting address
+		MOV P1,#0FFH			; Makes port 1 input port
+		SETB P2.7				; Makes EOC pin high
+		CLR P2.4				; Clears ALE pin
+		CLR P2.6				; Clears Start pin
+BACK:	CLR P2.5				; Clears OE pin
+		CLR P2.2				; Clears ADD C
+		SETB P2.1				; Sets ADD B
+		CLR P2.0				; Clears ADD A (this selects the second address line)
+		ACALL DELAY
+		SETB P2.4				; Sets ALE high
+		ACALL DELAY
+		SETB P2.6				; sends a command to start conversion
+		ACALL DELAY
+		CLR P2.4				; makes ALE low
+		CLR P2.6				; makes Start pin low
+HERE: 	JB P2.7,HERE			; waits for low pulse at EOC
+HERE1: 	JNB P2.7,HERE1			; waits for high pulse to finish
+		SETB P2.5				; enables OE pin to extract data from ADC
+		ACALL DELAY
+		MOV A,P1				; moves acquired data to accumulator
+		MOV P3,A
+		SJMP BACK				; repeatedly gets data from ADC
+DELAY: 	MOV R3,#50
+HERE2: 	MOV R4,#255
+HERE3: 	DJNZ R4,HERE3
+		DJNZ R3,HERE2
+		RET
+		END
+
+PROCEDURE
+
+•	Step 1: Power ON the 8051 Trainer Kit.
+•	Step 2: Enter the program by selecting the A (Address) option and specifying the starting address 4100.
+•	Step 3: Enter the input using SP (Store Program) starting from the addresses 4600.
+•	Step 4: Execute the program using the GO command followed by the program’s starting address.
+•	Step 5: Verify the output using SP (Store Program) starting from the addresses 4701.
+
+EXPECTED OUTPUT:
+
+Input: 1.25 V
+Output: 3FH
+
+INFERENCE:
+
+The program successfully demonstrates the handshaking process between the 8051 and ADC 0808. By 
+manipulating the control pins in the correct sequence, we can reliably convert and read analog 
+signals for further processing.
