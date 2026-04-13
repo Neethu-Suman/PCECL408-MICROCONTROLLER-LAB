@@ -12,3 +12,42 @@ EQUIPMENTS REQUIRED:
 •	8051 Trainer Kit.
 •	DAC 0808 IC and OP-AMP (e.g., uA741) for current-to-voltage conversion.
 •	Cathode Ray Oscilloscope (CRO) or Digital Storage Oscilloscope (DSO).
+
+THEORY:
+The DAC 0808 is an 8-bit monolithic digital-to-analog converter that features a full-scale settling time of approximately 150 ns. It works on the principle of the R-2R ladder network. Since the output of the DAC 
+0808 is a current (Iout), an external operational amplifier (OP-AMP) is typically used as an I-to-V converter to provide a measurable voltage output.
+The digital input D0 - D7 provided by the 8051 Port determines the output voltage:
+Vout = Vref (D\256)
+Where D is the decimal equivalent of the binary input.
+
+MODEL QUESTIONS 
+
+1.	Write an 8051 assembly program to read data from Channel 4 of the ADC 0808 and display the result on Port 0.
+2.	Write a program to generate a Square Wave using a DAC interfaced at Port 1 with a 50% duty cycle.
+3.	Write a program to generate a Triangular Wave by continuously incrementing and then decrementing the Accumulator for DAC output.
+4.	Modify the DAC Sawtooth program to double the frequency of the output wave by adjusting the DELAY subroutine.
+5.	Write an assembly program to generate a Staircase Waveform with 4 distinct steps.
+6.	Write a program to generate a rectangular pulse with a 25% duty cycle.
+7.	Using a MOVC instruction and a lookup table, generate a rough approximation of a sine wave.
+8.	Write a program to generate a square wave that only reaches half of the maximum possible analog voltage (Vref/2).
+9.	Identify and map the 8051 Port pins to the DAC 0808 data pins and verify the Vout for a static digital input of 80H.
+10.	Write a program that generates a sawtooth wave for 100 cycles and then switches to a square wave.
+
+VIVA VOCE QUESTIONS
+
+1.	What is the basic working principle of the DAC 0808 IC?
+2.	Why is an Operational Amplifier (like µA741) required at the output of the DAC 0808?
+3.	How do you define the "Resolution" of an 8-bit DAC?
+4.	What is meant by the "Settling Time" of a DAC?
+5.	What is the difference between a binary-weighted resistor network and an R-2R ladder network?
+6.	If Vref is 5V, what is the analog output voltage for the digital input FFH?
+7.	How does the delay subroutine in your assembly code affect the output waveform?
+8.	What are the steps required to generate a triangular waveform using a DAC?
+9.	What is the function of the Vref (Reference Voltage) pin in the DAC 0808?
+10.	How can you achieve a 25% duty cycle rectangular wave using DAC programming?
+
+
+INFERENCE:
+The experiment demonstrates how digital data can be converted into a continuous analog signal. By modifying the code (e.g., using DEC A or toggling between 00H and FFH), various waveforms like triangular or 
+square waves can be generated. The frequency of the output signal is inversely proportional to the delay provided in the code.
+
