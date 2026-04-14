@@ -34,4 +34,13 @@ Step 4: Execute the program using the GO command followed by the program’s sta
 Step 5: Verify the output by connecting the probes of a Cathode Ray Oscilloscope (CRO) to the Port 2 pins and the Ground (GND) pin on the trainer kit’s interface header to observe the square waveform.
 
 
+EXPECTED OUTPUT
+
+On an oscilloscope connected to any pin of Port 2 (e.g., P2.0), you will observe a Square Wave.
+
+•	Logic High: $+5V$ (Represented by $FFH$ in code).
+•	Logic Low: $0V$ (Represented by $00H$ in code).
+•	Duty Cycle: Approximately 50%, as the delay provided for both the High and Low states is identical.
+•	Frequency: Determined by the crystal frequency of the 8051 and the constants moved into registers R1 and R2 ($05H$ and $FFH$).
+
 
