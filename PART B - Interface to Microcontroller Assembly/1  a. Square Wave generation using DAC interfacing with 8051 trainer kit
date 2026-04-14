@@ -1,1 +1,30 @@
+OBJECTIVE
+•	To generate a continuous Square Wave at Port 2 (P2) of an 8051 microcontroller by toggling the logic levels between High ($FFH$) and Low ($00H$) with a software-defined time delay.
+
+ALGORITHM
+
+1.	Initialize: Load the Accumulator (A) with $00H$ (logic low).
+2.	Output: Send the value of the Accumulator to Port 2.
+3.	Wait: Call a delay subroutine to keep the signal at the current level for a specific duration.
+4.	Toggle: Complement the bits in the Accumulator (change $00H$ to $FFH$ or vice versa).
+5.	Repeat: Jump back to step 2 to create a continuous periodic wave.
+6.	Delay Subroutine: Use nested loops with registers (R1 and R2) to create a time gap by decrementing their values until they reach zero.
+
+CODE
+
+        MOV A, #00H      ; Start with logic Low
+L1:     MOV P2, A    ; Output the current state to Port 2
+        LCALL DELAY  ; Stay in this state for a while
+        CPL A        ; Complement A (Toggle between 00H and FFH)
+        LJMP L1      ; Repeat infinitely
+
+; --- Delay Subroutine ---
+DELAY: MOV R1, #05H ; Load outer loop counter
+LOOP:  MOV R2, #0FFH; Load inner loop counter
+L2:    DJNZ R2, L2  ; Decrement R2 until 0
+      DJNZ R1, LOOP; Decrement R1 until 0
+      RET          ; Return to main program
+		
+
+	
 
