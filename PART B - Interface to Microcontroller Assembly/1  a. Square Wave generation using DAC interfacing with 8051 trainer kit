@@ -25,6 +25,13 @@ L2:    DJNZ R2, L2  ; Decrement R2 until 0
       DJNZ R1, LOOP; Decrement R1 until 0
       RET          ; Return to main program
 		
+PROCEDURE
 
-	
+Step 1: Power ON the 8051 Trainer Kit.
+Step 2: Enter the program by selecting the A (Address) option and specifying the starting address 4100.
+Step 3: Type the assembly mnemonics (MOV, LCALL, CPL, etc.) sequentially into the kit starting from address 4100.
+Step 4: Execute the program using the GO command followed by the program’s starting address 4100.
+Step 5: Verify the output by connecting the probes of a Cathode Ray Oscilloscope (CRO) to the Port 2 pins and the Ground (GND) pin on the trainer kit’s interface header to observe the square waveform.
+
+
 
