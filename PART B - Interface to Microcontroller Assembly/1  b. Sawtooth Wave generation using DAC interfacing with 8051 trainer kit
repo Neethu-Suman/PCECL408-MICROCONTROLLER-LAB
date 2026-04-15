@@ -1,1 +1,18 @@
 
+OBJECTIVE
+•	To generate a continuous Sawtooth (Ramp) Wave at Port 2 (P2) of an 8051 microcontroller. 
+
+ALGORITHM
+
+1.	Initialize: Load the Accumulator (A) with the starting value 00H.
+2.	Output: Send the current value of the Accumulator to Port 2.
+3.	Increment: Increase the value of the Accumulator by 1 (INC A).
+4.	Check Boundary: Compare the value of A with FFH.
+  o	If A is not FFH, jump back to the Output step.
+  o	If A reaches FFH, let it overflow or manually reset it to 00H.
+5.	Repeat: Continue the loop infinitely to maintain a periodic ramp signal.
+
+CODE
+
+
+
