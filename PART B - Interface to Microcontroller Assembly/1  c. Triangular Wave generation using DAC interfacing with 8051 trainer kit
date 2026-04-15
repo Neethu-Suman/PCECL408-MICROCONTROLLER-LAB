@@ -34,3 +34,10 @@ PROCEDURE
 3. Enter the code instructions sequentially. (Note: No external data input is required for this program).
 4. Execute the program using the GO command followed by the starting address 4100.
 5. Verify the output by connecting a Digital-to-Analog Converter (DAC) to Port 2, then connect the DAC output to an Oscilloscope to observe the triangular waveform.
+
+EXPECTED OUTPUT
+
+8051 outputs digital values, once passed through a DAC (interface circuit), the output on the oscilloscope will be a linear triangular wave.
+•	Peak Voltage: Approximately +5V (at FFH).
+•	Minimum Voltage: 0V (at 00H).
+
