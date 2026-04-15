@@ -14,5 +14,33 @@ ALGORITHM
 
 CODE
 
+START: 
+    MOV A, #00H  ; Initialize A to 0
+
+LOOP:  
+    MOV P2, A    ; Output the digital value to Port 2
+    INC A        ; Increment the value to create the ramp
+    JNZ LOOP     ; Jump to LOOP if A is not zero (loops 00H to FFH)
+    
+    SJMP START   ; Once A overflows to 00H, restart the ramp
+    END
+
+PROCEDURE
+
+1. Power ON the 8051 Trainer Kit.
+2. Enter the program by selecting the A (Address) option and specifying the starting address 4100.
+3. Enter the assembly instructions starting from address 4100.
+4. Execute the program using the GO command followed by the starting address 4100.
+5. Connect the Port 2 pins to a DAC (Digital-to-Analog Converter) and observe the output on an Oscilloscope (CRO) to verify the sawtooth waveform.
+
+EXPECTED OUTPUT
+
+The output will be a Ramp Waveform. Unlike the triangular wave which has a rising and falling slope, the sawtooth wave rises linearly and then drops instantly back to the baseline.
+•	Rise Time: Determined by the execution speed of the INC and MOV instructions.
+•	Fall Time: Instantaneous (vertical drop) when the register resets from FFH to 00H.
+•	Peak Amplitude: +5V (representing FFH).
+•	Base Amplitude: 0V (representing 00H).
+
+
 
 
