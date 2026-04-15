@@ -1,10 +1,36 @@
+OBJECTIVE
+•	To generate a continuous Triangular Wave (sawtooth/ramp pattern up and down) at Port 2 (P2) of an 8051 microcontroller by linearly incrementing and then decrementing the digital value sent to the port.
+
+ALGORITHM
+1.	Initialize: Clear the Accumulator (A = 00H).
+2.	Ramp Up (Rising Edge):
+	o	Output the value of A to Port 2.
+	o	Increment A.
+	o	Compare A with FFH. If not equal, repeat the output and increment process.
+3.	Ramp Down (Falling Edge):
+	o	Output the value of A to Port 2.
+	o	Decrement A.
+	o	Compare A with 00H. If not equal, repeat the output and decrement process.
+4.	Repeat: Jump back to the start of the Ramp Up sequence to create a periodic wave.
+
 CODE 
-L1:	MOV A,#00H
-U:	MOV P2,A
-	INC A
-	CJNE A,#0FFH,U
-D:	MOV P2,A
-	DEC A
-	CJNE A,#00H,D
-	SJMP L1
-	END
+
+L1: MOV A, #00H  ; Initialize Accumulator to 0
+
+U:  MOV P2, A    ; [Ramp Up] Move current value to Port 2
+    INC A        ; Increase value by 1
+    CJNE A, #0FFH, U ; Keep increasing until A reaches 255 (FFH)
+
+D:  MOV P2, A    ; [Ramp Down] Move current value to Port 2
+    DEC A        ; Decrease value by 1
+    CJNE A, #00H, D  ; Keep decreasing until A reaches 0
+
+    SJMP L1      ; Repeat the whole process infinitely
+
+PROCEDURE
+
+1. Power ON the 8051 Trainer Kit.
+2. Enter the program by selecting the A (Address) option and specifying the starting address 4100.
+3. Enter the code instructions sequentially. (Note: No external data input is required for this program).
+4. Execute the program using the GO command followed by the starting address 4100.
+5. Verify the output by connecting a Digital-to-Analog Converter (DAC) to Port 2, then connect the DAC output to an Oscilloscope to observe the triangular waveform.
