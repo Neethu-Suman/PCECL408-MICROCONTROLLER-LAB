@@ -1,46 +1,56 @@
 OBJECTIVE
-•	To generate a continuous Square Wave at Port 2 (P2) of an 8051 microcontroller by toggling the logic levels between High ($FFH$) and Low ($00H$) with a software-defined time delay.
+•	To generate a continuous Square Wave at Port 2 (P2) of an 8051 microcontroller by toggling the logic levels between High (FFH) and Low (00H) with a software-defined time delay.
 
 ALGORITHM
 
-1.	Initialize: Load the Accumulator (A) with $00H$ (logic low).
+1.	Initialize: Load the Accumulator (A) with 00H (logic low).
 2.	Output: Send the value of the Accumulator to Port 2.
 3.	Wait: Call a delay subroutine to keep the signal at the current level for a specific duration.
-4.	Toggle: Complement the bits in the Accumulator (change $00H$ to $FFH$ or vice versa).
+4.	Toggle: Complement the bits in the Accumulator (change 00H to FFH or vice versa).
 5.	Repeat: Jump back to step 2 to create a continuous periodic wave.
 6.	Delay Subroutine: Use nested loops with registers (R1 and R2) to create a time gap by decrementing their values until they reach zero.
 
 CODE
 
-        MOV A, #00H      ; Start with logic Low
-L1:     MOV P2, A    ; Output the current state to Port 2
-        LCALL DELAY  ; Stay in this state for a while
-        CPL A        ; Complement A (Toggle between 00H and FFH)
-        LJMP L1      ; Repeat infinitely
+        MOV A, #00H     ; Start with logic Low
+L1:     MOV P2, A    	; Output the current state to Port 2
+        LCALL DELAY  	; Stay in this state for a while
+        CPL A        	; Complement A (Toggle between 00H and FFH)
+        LJMP L1      	; Repeat infinitely
 
 ; --- Delay Subroutine ---
-DELAY: MOV R1, #05H ; Load outer loop counter
-LOOP:  MOV R2, #0FFH; Load inner loop counter
-L2:    DJNZ R2, L2  ; Decrement R2 until 0
-      DJNZ R1, LOOP; Decrement R1 until 0
-      RET          ; Return to main program
+DELAY: MOV R1, #05H 	; Load outer loop counter
+LOOP:  MOV R2, #0FFH	; Load inner loop counter
+L2:    DJNZ R2, L2  	; Decrement R2 until 0
+      DJNZ R1, LOOP		; Decrement R1 until 0
+      RET          		; Return to main program
 		
 PROCEDURE
 
-Step 1: Power ON the 8051 Trainer Kit.
-Step 2: Enter the program by selecting the A (Address) option and specifying the starting address 4100.
-Step 3: Type the assembly mnemonics (MOV, LCALL, CPL, etc.) sequentially into the kit starting from address 4100.
-Step 4: Execute the program using the GO command followed by the program’s starting address 4100.
-Step 5: Verify the output by connecting the probes of a Cathode Ray Oscilloscope (CRO) to the Port 2 pins and the Ground (GND) pin on the trainer kit’s interface header to observe the square waveform.
+1. Power ON the 8051 Trainer Kit.
+2. Enter the program by selecting the A (Address) option and specifying the starting address 4100.
+3. Type the assembly mnemonics (MOV, LCALL, CPL, etc.) sequentially into the kit starting from address 4100.
+4. Execute the program using the GO command followed by the program’s starting address 4100.
+5. Verify the output by connecting the probes of a Cathode Ray Oscilloscope (CRO) to the Port 2 pins and the Ground (GND) pin on the trainer kit’s interface header to observe the square waveform.
+
+EXPECTED OUTPUT
+
+On an oscilloscope connected to any pin of Port 2 (e.g., P2.0), you will observe a Square Wave.
+•	Logic High: +5V (Represented by FFH in code).
+•	Logic Low: 0V (Represented by 00H in code).
+•	Duty Cycle: Approximately 50%, as the delay provided for both the High and Low states is identical.
+•	Frequency: Determined by the crystal frequency of the 8051 and the constants moved into registers R1 and R2 (05H and FFH).
+
+
 
 
 EXPECTED OUTPUT
 
 On an oscilloscope connected to any pin of Port 2 (e.g., P2.0), you will observe a Square Wave.
 
-•	Logic High: $+5V$ (Represented by $FFH$ in code).
-•	Logic Low: $0V$ (Represented by $00H$ in code).
+•	Logic High: +5V (Represented by FFH in code).
+•	Logic Low: 0V (Represented by 00H in code).
 •	Duty Cycle: Approximately 50%, as the delay provided for both the High and Low states is identical.
-•	Frequency: Determined by the crystal frequency of the 8051 and the constants moved into registers R1 and R2 ($05H$ and $FFH$).
+•	Frequency: Determined by the crystal frequency of the 8051 and the constants moved into registers R1 and R2 (05H and FFH).
 
 
