@@ -1,1 +1,74 @@
 
+OBJECTIVE
+•	To generate Pulse Width Modulation (PWM) signals using the LPC2148 microcontroller to control the speed of a DC motor by varying the duty cycle.
+
+ALGORITHM
+
+1.	Initialize Pins: Configure the Pin Select Register (PINSEL0) to set P0.7 and P0.9 as PWM2 and PWM6 output pins.
+2.	Setup PWM Timer:
+    o	Set the Prescaler (PWMPR) to 0.
+    o	Enable PWM2 and PWM6 outputs using the PWM Control Register (PWMPCR).
+    o	Configure the Match Control Register (PWMMCR) to reset the TC (Timer Counter) when it matches PWMMR0.
+3.	Set Frequency: Load the Match Register 0 (PWMMR0) with a value (12000) that defines the total period/frequency of the PWM signal.
+4.	Control Duty Cycle: Use a variable x to set the Match Registers (PWMMR2 and PWMMR6). The ratio of x to PWMMR0 determines the duty cycle.
+5.	Enable Counter: Reset and enable the PWM counter using the Timer Control Register (PWMTCR).
+6.	Looping Logic: In a continuous loop, increment the value of x.
+    o	If x exceeds the period (12000), reset x to 0 to create a "fading" or "speed ramping" effect.
+    o	Apply a short delay to make the transition visible.
+
+CODE
+
+#include<nxp\iolpc2148.h>
+
+int x;
+
+void delay() {
+    for(int i=0; i<=1500; i++);
+}
+
+void pwm(int x) {
+    PINSEL0 = 0X00088005;  // Select P0.7 (PWM2) and P0.9 (PWM6)
+    PWMPR   = 0X00000000;  // Prescaler = 0
+    PWMPCR  = 0X00004400;  // Enable PWM2 and PWM6
+    PWMMCR  = 0X00000002;  // Reset on PWMMR0 match
+    PWMMR0  = 12000;       // Set PWM Period (5kHz if PCLK=60MHz)
+    PWMMR2  = x;           // Set Duty Cycle for PWM2
+    PWMMR6  = x;           // Set Duty Cycle for PWM6
+    PWMTCR  = 0X00000002;  // Reset Timer
+    PWMTCR  = 0X00000009;  // Enable Timer and PWM
+}
+
+void main() {
+    x = 0; // Initialize x
+    while(1) {
+        for(int i=0; i<=12000; i++) {
+            x = x + 10;
+            pwm(x);
+            delay();
+            if(x >= 12000) { 
+                x = 0; // Reset duty cycle
+            }
+        }
+    }
+}
+
+PROCEDURE
+
+1.	Project Creation: Open IAR, go to Project -> Create New Project, and select the LPC2148 device from the NXP library.
+2.	Coding: Create a new file, enter the code, and save it as main.c. Right-click the project in the workspace to Add > Add Files and select your main.c.
+3.	Setting Project Options: * Right-click the Project and select Options.
+    o	In General Options, confirm the Device is set to NXP LPC2148.
+    o	In Output Converter, check "Generate additional output" and select "Intel Extended HEX" to create the flash file.
+4.	Compilation: Click Project > Make (F7) to compile. Ensure the message "Total number of errors: 0" appears.
+5.	Debug/Flash: Use Flash Magic to upload the .hex file (found in the Debug\Exe folder) via the serial ISP port.
+6.	Hardware Connection: Connect P0.7 (PWM2) to the EN or IN pin of an L293D motor driver connected to your DC motor.
+7.	Observation: The DC motor speed will ramp up as the duty cycle increases from 0% to 100%, then reset and repeat.
+
+EXPECTED OUTPUT
+  •	The DC motor will start from a standstill, gradually increase its speed to maximum, and then suddenly stop/reset before repeating the acceleration cycle.
+  •	Duty Cycle = x/12000 x 100
+  As x increases from 0 to 12000, the average voltage delivered to the motor increases linearly.
+
+
+
+
