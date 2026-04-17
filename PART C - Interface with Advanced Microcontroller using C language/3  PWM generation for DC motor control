@@ -68,7 +68,3 @@ EXPECTED OUTPUT
   •	The DC motor will start from a standstill, gradually increase its speed to maximum, and then suddenly stop/reset before repeating the acceleration cycle.
   •	Duty Cycle = x/12000 x 100
   As x increases from 0 to 12000, the average voltage delivered to the motor increases linearly.
-
-
-
-
