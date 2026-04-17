@@ -86,4 +86,26 @@ void main(void)
   // Here counting limit is 110.
 }   
 
+PROCEDURE 
 
+1.	Project Creation: Open IAR, create a new C project, and select NXP LPC2148 as the target device.
+2.	Coding: Create a new main.c file, enter the code, and add it to the project workspace.
+3.	Project Options: * Right-click the project → Options.
+    o	General Options: Confirm Device is "NXP LPC2148".
+    o	Output Converter: Select "Generate additional output" and choose Intel Extended HEX.
+4.	Compilation: Go to Project > Make (F7). Ensure there are no errors in the build log.
+5.	Flashing: Use Flash Magic to browse for the .hex file (usually in the Debug\Exe folder) and upload it to the LPC2148 kit via the COM port.
+6.	Hardware Connection: * Connect P0.2 (SDA) and P0.3 (SCL) of the LPC2148 to the corresponding SDA and SCL pins of the I2C 7-segment display module.
+    o	Ensure pull-up resistors are present on the I2C lines.
+7.	Observation: Observe the 7-segment display; all six digits should cycle from 0 to 9 synchronously every second.
+
+EXPECTED OUTPUT
+
+•	Initial State: All 7-segment digits remain blank for a brief moment during initialization.
+•	Counting State: All digits simultaneously display '0', then '1', up to '9'.
+•	Loop: After reaching '9', the display resets to '0' and repeats the cycle indefinitely.
+•	I2C Signal: If viewed on an oscilloscope, you would see the Start condition, followed by address $0x70$, then the data byte, and a Stop condition.
+
+INFERENCE
+
+The I2C protocol successfully controls multiple display digits using only two wires (SDA and SCL), demonstrating significant GPIO savings compared to parallel interfacing.
