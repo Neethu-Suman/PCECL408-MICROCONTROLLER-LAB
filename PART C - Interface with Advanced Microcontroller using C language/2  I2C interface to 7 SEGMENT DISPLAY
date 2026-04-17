@@ -1,1 +1,20 @@
+OBJECTIVE
+•	To interface a multi-digit 7-segment display (via an I2C-based driver) with the LPC2148 microcontroller and implement a synchronized counter that displays digits 0–9.
+
+ALGORITHM
+1.	I2C Configuration:
+    o	Configure pins P0.2 (SDA0) and P0.3 (SCL0) using PINSEL0.
+    o	Set the I2C clock frequency (e.g., 100 kHz) using I2CSCLH and I2CSCLL.
+    o	Enable the I2C interface.
+2.	I2C Write Protocol:
+    o	Generate a START condition.
+    o	Transmit the Slave Address of the 7-segment driver.
+    o	Transmit the Data byte (hex code for the specific digit).
+    o	Generate a STOP condition.
+3.	Data Preparation: Store the 7-segment hex codes for digits 0–9 (0x3F for '0', 0x06 for '1', etc.) in an array.
+4.	Display Logic: * Initialize the display by writing 0x00 (blank) to all digit addresses.
+    o	In a continuous loop, iterate through the hex code array.
+    o	Write the same digit value to all six digit addresses (0x70 to 0x7A) to show a synchronized count.
+    o	Apply a delay of approximately 1 second between increments.
+
 
