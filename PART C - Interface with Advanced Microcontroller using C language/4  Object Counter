@@ -1,1 +1,138 @@
 
+OBJECTIVE
+•	To implement a digital object counting system using an LPC2148 microcontroller, an IR sensor, and an LCD display. The system increments a count every time an object obstructs the IR beam and displays the total 
+  count in real-time on the LCD screen.
+
+ALGORITHM
+
+1.	System Initialization:
+    o	Configure GPIO pins for the LCD (Control pins: P0.8, P0.11; Data port: P1.16–P1.23).
+    o	Configure the IR sensor pin (P0.16) as an input.
+    o	Initialize the LCD by sending specific command codes (0x38, 0x01, 0x06, 0x0C, 0x80).
+2.	Display Initialization: Write the static string "Object Count:" to the first line of the LCD.
+3.	Main Loop:
+    o	Check Sensor: Read the logic level of the IR sensor (P0.16).
+    o	Detection: If the sensor is low (object detected) AND the object_detected flag is 0:
+        *	Increment the count variable.
+        *	Update the object_detected flag to 1.
+        *	Update the LCD display by printing the updated count on the second line (0xC0).
+    o	Reset: If the sensor is high (no object), reset the object_detected flag to 0 to prepare for the next object.
+    o	Stability: Execute a small delay to debounce the sensor signal.
+
+CODE
+
+#include <nxp\iolpc2148.h>
+#define rs IO0PIN_bit.P0_8
+#define en IO0PIN_bit.P0_11
+#define IR_INPUT IO0PIN_bit.P0_16  // IR sensor connected to P0.16
+unsigned char commandarray[5] = {0x38, 0x01, 0x06, 0x0C, 0x80};
+void delay(unsigned int x)
+{
+    unsigned int i, j;
+    for(i = 0; i < x; i++)
+        for(j = 0; j < 500; j++);
+}
+void command()
+{
+    int i;
+    for(i = 0; i < 5; i++)
+    {
+        IO1PIN = commandarray[i] << 16;
+        rs = 0;
+        en = 1;
+        delay(5);
+        en = 0;
+        delay(5);
+    }
+}
+void lcd_cmd(unsigned char cmd)
+{
+    IO1PIN = cmd << 16;
+    rs = 0;
+    en = 1;
+    delay(5);
+    en = 0;
+}
+void lcd_data(unsigned char data)
+{
+    IO1PIN = data << 16;
+    rs = 1;
+    en = 1;
+    delay(5);
+    en = 0;
+}
+void lcd_string(unsigned char *str)
+{
+    while(*str)
+    {
+        lcd_data(*str++);
+    }
+}
+
+void lcd_display_number(unsigned int num)
+{
+    unsigned char str[5];
+    int i = 0;
+
+    if(num == 0)
+    {
+        lcd_data('0');
+        return;
+    }
+    while(num > 0)
+    {
+        str[i++] = (num % 10) + '0';
+        num = num / 10;
+    }
+    while(i > 0)
+    {
+        lcd_data(str[--i]);
+    }
+}
+void main()
+{
+    unsigned int count = 0;
+    unsigned char object_detected = 0;
+    // LCD pin setup
+    PINSEL0 = 0x00000000;
+    PINSEL1 = 0x00000000;
+    PINSEL2 = 0x00000000;
+
+    IO0DIR_bit.P0_8 = 1;   // RS
+    IO0DIR_bit.P0_11 = 1;  // EN
+    IO1DIR = 0x00FF0000;   // P1.16 P1.23 as output for LCD data
+    IO0DIR_bit.P0_16 = 0;   // IR sensor input (P0.16 as input)
+    command();
+    lcd_cmd(0x80);
+    lcd_string("Object Count:");
+
+    while(1)
+    {
+        if(IR_INPUT == 0 && object_detected == 0)
+        {
+            object_detected = 1;   // Object detected
+            count++;
+
+            lcd_cmd(0xC0);          // Move to 2nd line
+            lcd_display_number(count);
+        }
+        if(IR_INPUT == 1)
+        {
+            object_detected = 0;   // Object moved away
+        }
+
+        delay(50);  // Debounce delay
+    }
+}
+
+PROCEDURE
+1.	Hardware Connection: Connect the IR sensor output to the P0.16 pin of the LPC2148 board. Connect the LCD data pins (D0-D7) to P1.16–P1.23, and control pins (RS, EN) to P0.8 and P0.11.
+2.	Compile: Load the provided C code into the Keil $\mu$Vision IDE. Configure the target settings for the LPC2148 and compile to generate the .hex file.
+3.	Burn: Open your flash programming software (e.g., Flash Magic). Connect the board to the PC, select the generated .hex file, and flash the code to the microcontroller.
+4.	Execute: Power on the kit. The LCD should initialize and display "Object Count:".
+5.	Test: Move an object (like your hand) in front of the IR sensor. Observe the LCD screen as the number increments.
+
+
+
+
+
