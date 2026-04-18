@@ -126,12 +126,24 @@ void main()
 }
 
 PROCEDURE
-1.	Hardware Connection: Connect the IR sensor output to the P0.16 pin of the LPC2148 board. Connect the LCD data pins (D0-D7) to P1.16–P1.23, and control pins (RS, EN) to P0.8 and P0.11.
-2.	Compile: Load the provided C code into the Keil $\mu$Vision IDE. Configure the target settings for the LPC2148 and compile to generate the .hex file.
-3.	Burn: Open your flash programming software (e.g., Flash Magic). Connect the board to the PC, select the generated .hex file, and flash the code to the microcontroller.
-4.	Execute: Power on the kit. The LCD should initialize and display "Object Count:".
-5.	Test: Move an object (like your hand) in front of the IR sensor. Observe the LCD screen as the number increments.
 
+1.	Project Creation: Open IAR, create a new C project, and select NXP LPC2148 as the target device.
+2.	Coding: Create a new main.c file, paste the code, and add it to the project workspace.
+3.	Project Options: * Right-click the project → Options.
+    o	General Options: Confirm Device is "NXP LPC2148".
+    o	Output Converter: Select "Generate additional output" and choose Intel Extended HEX.
+4.	Compilation: Go to Project > Make (F7). Ensure there are no errors in the build log.
+5.	Hardware Interfacing:
+    o	LCD: Connect the LCD data bus (D0-D7) to P1.16 through P1.23. Connect RS to P0.8 and Enable (EN) to P0.11.
+    o	IR Sensor: Connect the output of the IR sensor module to P0.16.
+    o	Power: Ensure the LCD and IR sensor are provided with appropriate +5V power and ground.
+6.	Flashing: Upload the generated .hex file to the LPC2148 kit using Flash Magic.
+7.	Testing: Power the circuit. The LCD will display "Object Count:". Interrupt the IR beam; the number on the LCD will increment for every object that passes.
+
+
+EXPECTED OUTPUT
+•	Initialization: The LCD displays "Object Count:" on the top row immediately upon power-up.
+•	Counting: As an object passes through the IR sensor beam, the digit on the second line of the LCD increments by 1 (e.g., 0, 1, 2, ...).
 
 
 
