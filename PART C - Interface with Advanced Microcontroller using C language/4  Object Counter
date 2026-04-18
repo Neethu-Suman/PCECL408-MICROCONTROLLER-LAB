@@ -140,7 +140,12 @@ PROCEDURE
 6.	Flashing: Upload the generated .hex file to the LPC2148 kit using Flash Magic.
 7.	Testing: Power the circuit. The LCD will display "Object Count:". Interrupt the IR beam; the number on the LCD will increment for every object that passes.
 
+MODEL QUESTIONS
 
+1.	Interface a buzzer on pin P0.18. Write a function to turn the buzzer ON for 0.5 seconds whenever an object is detected.
+2.  Modify the code to display "Full" on the LCD when the object count reaches 50.
+3.  Connect a second IR sensor and write logic to detect the direction of movement (e.g., "Enter" vs "Exit").
+4.  
 EXPECTED OUTPUT
 •	Initialization: The LCD displays "Object Count:" on the top row immediately upon power-up.
 •	Counting: As an object passes through the IR sensor beam, the digit on the second line of the LCD increments by 1 (e.g., 0, 1, 2, ...).
