@@ -163,6 +163,9 @@ EXPECTED OUTPUT
 •	Initialization: The LCD displays "Object Count:" on the top row immediately upon power-up.
 •	Counting: As an object passes through the IR sensor beam, the digit on the second line of the LCD increments by 1 (e.g., 0, 1, 2, ...).
 
+INFERENCE
+The Object Counter experiment successfully validated the integration of sensor-based input and display-based output using the LPC2148.
+
 
 
 
