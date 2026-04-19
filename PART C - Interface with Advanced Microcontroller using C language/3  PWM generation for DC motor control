@@ -69,7 +69,31 @@ EXPECTED OUTPUT
   •	Duty Cycle = x/12000 x 100
   As x increases from 0 to 12000, the average voltage delivered to the motor increases linearly.
 
+MODEL QUESTIONS
 
+1.	Modify the code to change the PWM frequency from 5 kHz to 10 kHz by adjusting the PWMMR0 value.
+2.	Interface a potentiometer with the ADC0 pin of the LPC2148 and use the converted value to dynamically control the PWM duty cycle.
+3.	Add a second DC motor and configure PWMMR3 to control its speed independently of the first.
+4.	Implement a "soft-start" feature where the motor speed increases incrementally over 5 seconds instead of resetting instantly to zero.
+5.	Change the PWM prescaler PWMPR value and calculate the resulting change in timer increment frequency.
+6.	Add an H-bridge direction control signal to a standard GPIO pin (e.g., P0.10) to allow for both clockwise and counter-clockwise rotation.
+7.	Modify the code to limit the motor speed so it only operates between 30% and 70% duty cycle, preventing stalling at very low voltages.
+8.	Use the Logic Analyzer in your development environment to capture the PWM waveform; verify that the measured duty cycle matches the programmed value.
+9.	Introduce an external interrupt (EINT0) button to act as an "Emergency Stop" that immediately sets the PWM output to 0%.
+10.	Observe the effect of motor load: measure if the motor speed varies when you apply a mechanical load, and explain how PWM maintains torque.
+
+VIVA QUESTIONS
+
+1.	Define Pulse Width Modulation (PWM) and its primary purpose in embedded control systems.
+2.	What is the mathematical relationship between the duty cycle and the average output voltage delivered to the motor?
+3.	Explain the specific role of the Match Register 0 (PWMMR0) in determining the PWM frequency.
+4.	Why is a motor driver IC (like the L293D) necessary between the LPC2148 microcontroller and the DC motor?
+5.	What is the function of the Prescaler (PWMPR) register in the PWM timer configuration?
+6.	How do you calculate the exact PWM frequency if the peripheral clock (PCLK) is 60 MHz?
+7.	What happens to the motor behavior if the PWM frequency is set extremely low (e.g., below 50 Hz)?
+8.	Explain the purpose of the PWMTCR (Timer Control Register) in the PWM initialization sequence.
+9.	How does varying the value in a specific match register (PWMMR2) physically affect the DC motor?
+10.	What is the fundamental difference between controlling motor speed via PWM versus using a variable resistor in series with the motor?
 
 INFERENCE
 
