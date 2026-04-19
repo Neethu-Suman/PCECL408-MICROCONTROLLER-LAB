@@ -69,6 +69,8 @@ EXPECTED OUTPUT
   •	Duty Cycle = x/12000 x 100
   As x increases from 0 to 12000, the average voltage delivered to the motor increases linearly.
 
+
+
 INFERENCE
 
 The experiment proves that motor speed is directly proportional to the Duty Cycle. By varying the match register value ($x$), the average DC voltage is modified, allowing for smooth acceleration.
