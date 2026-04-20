@@ -140,6 +140,10 @@ PROCEDURE
 6.	Flashing: Upload the generated .hex file to the LPC2148 kit using Flash Magic.
 7.	Testing: Power the circuit. The LCD will display "Object Count:". Interrupt the IR beam; the number on the LCD will increment for every object that passes.
 
+EXPECTED OUTPUT
+•	Initialization: The LCD displays "Object Count:" on the top row immediately upon power-up.
+•	Counting: As an object passes through the IR sensor beam, the digit on the second line of the LCD increments by 1 (e.g., 0, 1, 2, ...).
+
 MODEL QUESTIONS
 
 1.	Interface a buzzer on pin P0.18. Write a function to turn the buzzer ON for 0.5 seconds whenever an object is detected.
@@ -158,10 +162,6 @@ MODEL QUESTIONS
 8.	How does the system distinguish between a new object and the same object remaining in front of the sensor?
 9.	What is the significance of the command array values (e.g., 0x38, 0x01)?
 10.	If you wanted to interface an ultrasonic sensor instead of an IR sensor for this project, what major changes would be required in the code?
-
-EXPECTED OUTPUT
-•	Initialization: The LCD displays "Object Count:" on the top row immediately upon power-up.
-•	Counting: As an object passes through the IR sensor beam, the digit on the second line of the LCD increments by 1 (e.g., 0, 1, 2, ...).
 
 INFERENCE
 The Object Counter experiment successfully validated the integration of sensor-based input and display-based output using the LPC2148.
