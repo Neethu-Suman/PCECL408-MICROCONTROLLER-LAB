@@ -106,6 +106,20 @@ EXPECTED OUTPUT
 •	Loop: After reaching '9', the display resets to '0' and repeats the cycle indefinitely.
 •	I2C Signal: If viewed on an oscilloscope, you would see the Start condition, followed by address $0x70$, then the data byte, and a Stop condition.
 
+MODEL QUESTIONS
+
+1.	Modify the program to perform a countdown from 9 to 0 instead of incrementing.
+2.	Interface an LDR (Light Dependent Resistor) with the ADC0 pin of the LPC2148 and display the detected light level (0-9) on the 7-segment display.
+3.	Update the code to blink all 6 digits of the display simultaneously at a 1Hz frequency.
+4.	Implement a function to display alphanumeric characters like 'A', 'B', 'C', 'D', 'E', 'F' on the 7-segment display.
+5.	Change the I2C clock frequency in the i2c_config function and test if the display maintains stability at higher speeds (e.g., 400 kHz).
+6.	Add a push-button on pin P0.17 to pause the counter operation whenever the button is held down.
+7.	Write a modified counter function that displays the count on only the first two digits while keeping the others blank.
+8.	Diagnose what happens to the display if you intentionally disconnect the SDA or SCL line during runtime.
+9.	Modify the lookup table (array) to support a common anode display configuration instead of the existing common cathode logic.
+10.	Interface two identical I2C 7-segment modules and modify the code to address them individually using their unique hardware addresses.
+
+
 INFERENCE
 
 The I2C protocol successfully controls multiple display digits using only two wires (SDA and SCL), demonstrating significant GPIO savings compared to parallel interfacing.
