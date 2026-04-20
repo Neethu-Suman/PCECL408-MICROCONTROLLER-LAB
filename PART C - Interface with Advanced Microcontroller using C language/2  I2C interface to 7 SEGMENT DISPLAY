@@ -119,6 +119,18 @@ MODEL QUESTIONS
 9.	Modify the lookup table (array) to support a common anode display configuration instead of the existing common cathode logic.
 10.	Interface two identical I2C 7-segment modules and modify the code to address them individually using their unique hardware addresses.
 
+VIVA QUESTIONS
+
+1.	What is the fundamental difference between the SDA and SCL lines in the I2C protocol?
+2.	Why is I2C referred to as a "Synchronous" serial communication protocol?
+3.	Explain the function of the Start and Stop conditions in I2C data frames.
+4.	What is the role of an Acknowledge (ACK) bit in I2C communication?
+5.	Why are external pull-up resistors mandatory on the SDA and SCL lines for the I2C bus to function?
+6.	How does the master device identify which specific slave device to communicate with on a shared bus?
+7.	What is the significance of the I2C0SCLH and I2CSCLL registers in the LPC2148 architecture?
+8.	In this experiment, why is it necessary to send a specific Hex code (e.g., 0x3F) to represent the digit '0'?
+9.	Can multiple masters exist on the same I2C bus? If so, what mechanism prevents data collisions?
+10.	What are the primary advantages of I2C over SPI when interfacing with a 7-segment display driver?
 
 INFERENCE
 
